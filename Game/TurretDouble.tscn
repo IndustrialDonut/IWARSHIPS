@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://TurretBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cannon203JP.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 1, 1, 1 )
+
+[node name="TurretDouble" instance=ExtResource( 1 )]
+
+[node name="Cannon203JP" parent="Horizontal/Vertical" index="0" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.146015, 0, 0 )
+
+[node name="Cannon203JP2" parent="Horizontal/Vertical" index="1" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135149, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Horizontal" index="1"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Timer" type="Timer" parent="." index="1"]
+wait_time = 2.0
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

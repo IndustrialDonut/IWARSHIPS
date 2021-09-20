@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Ships/DestroyerBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ships/CruiserBase.gd" type="Script" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 3, 2, 12 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 2, 2, 8 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.952941, 0.0352941, 0.0352941, 1 )
+
+[sub_resource type="CylinderMesh" id=4]
+resource_local_to_scene = true
+material = SubResource( 5 )
+top_radius = 0.1
+bottom_radius = 0.1
+
+[node name="CruiserBase" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" parent="Hull" index="1"]
+mesh = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="1"]
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="LaserHorizontal" parent="." index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68691, -0.0889983 )
+
+[node name="MeshInstance" parent="LaserHorizontal/LaserVertical" index="0"]
+mesh = SubResource( 4 )
+
+[node name="ROF" parent="." index="10"]
+wait_time = 5.0
+
+[node name="Cooldown" parent="." index="11"]
+wait_time = 0.2

@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://CameraController.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://MP.gd" type="Script" id=5]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="MP" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="host" type="Button" parent="MP"]
+margin_left = 45.0
+margin_top = 53.0
+margin_right = 153.0
+margin_bottom = 161.0
+text = "host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="join" type="Button" parent="MP"]
+margin_left = 46.0
+margin_top = 193.0
+margin_right = 154.0
+margin_bottom = 301.0
+text = "join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+<<<<<<< HEAD
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CameraController" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.23861, 0 )
+
+[node name="Vertical" type="Spatial" parent="CameraController"]
+
+[node name="Camera" type="Camera" parent="CameraController/Vertical"]
+fov = 90.0
+far = 8192.0
+
+[node name="SelectionBox" type="Control" parent="CameraController/Vertical"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="CameraController"]
+
+[node name="Sprite" type="Sprite" parent="CameraController/Node2D"]
+position = Vector2( 968, 46 )
+texture = ExtResource( 8 )
+
+[node name="BlueUnits" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -115.107, 0, -58.8181 )
+
+[node name="DestroyerBase2" parent="BlueUnits" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9354 )
+
+[node name="DestroyerBase" parent="BlueUnits" instance=ExtResource( 2 )]
+
+[node name="DestroyerBase3" parent="BlueUnits" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.6322 )
+
+[node name="CruiserBase" parent="BlueUnits" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1931, 0, -12.583 )
+
+[node name="CruiserBase2" parent="BlueUnits" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1931, 0, 13.8803 )
+
+[node name="BattleshipBase" parent="BlueUnits" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.72, 0, -1.14441e-05 )
+
+[node name="RedUnits" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 86.4843, 0, -58.8181 )
+
+[node name="DestroyerBase2" parent="RedUnits" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9354 )
+
+[node name="DestroyerBase" parent="RedUnits" instance=ExtResource( 2 )]
+
+[node name="DestroyerBase3" parent="RedUnits" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.6322 )
+
+[node name="CruiserBase" parent="RedUnits" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1931, 0, -12.583 )
+
+[node name="CruiserBase2" parent="RedUnits" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1931, 0, 13.8803 )
+
+[node name="BattleshipBase" parent="RedUnits" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.72, 0, 0 )
+=======
+[node name="Map" parent="." instance=ExtResource( 2 )]
+>>>>>>> 3d8e508cecab0c3c4b8b08eb4b4c0ff23fdb495d
+
+[node name="CameraController" parent="." instance=ExtResource( 1 )]
+
+[connection signal="pressed" from="MP/host" to="MP" method="_on_host_pressed"]
+[connection signal="pressed" from="MP/join" to="MP" method="_on_join_pressed"]
