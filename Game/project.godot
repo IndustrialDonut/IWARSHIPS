@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "ENUM",
+"class": "CONSTANTS",
 "language": "GDScript",
 "path": "res://Globals/Global1.gd"
 } ]
 _global_script_class_icons={
-"ENUM": ""
+"CONSTANTS": ""
 }
 
 [application]

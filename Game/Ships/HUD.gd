@@ -1,21 +1,6 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
-
-
 func set_rudder_angle(normalized) -> void:
 	$ColorRect/TextureRect.rect_position.x = normalized * $ColorRect.rect_size.x
 	$ColorRect/TextureRect.rect_position.x -= $ColorRect/TextureRect.rect_size.x/2.0
@@ -46,4 +31,14 @@ func set_speed(vel : Vector3) -> void:
 
 
 func set_distance(dist) -> void:
-	$reticle/range.text = str(int(dist)) + " meters"
+	if "guncam" in get_viewport().get_camera():
+		var a = dist * CONSTANTS.DISTANCE_SCALE
+		
+		# formatting to have 2 decimal places
+		a = str(a)
+		var array = a.split('.',false)
+		var string = array[0] + '.' + array[1].substr(0,2)
+		
+		$reticle/range.text = string + " km"
+	else:
+		$reticle/range.text = ""

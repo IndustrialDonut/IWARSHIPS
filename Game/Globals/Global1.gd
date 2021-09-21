@@ -1,4 +1,4 @@
-class_name ENUM extends Node
+class_name CONSTANTS extends Node
 
 
 enum ARM{
@@ -6,3 +6,5 @@ enum ARM{
 	AP,
 	TORP
 }
+
+const DISTANCE_SCALE = 0.05 # for a ship that is 100 meters long IRL, it is 5 units in game.

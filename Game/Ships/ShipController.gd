@@ -35,6 +35,8 @@ func _process(delta: float) -> void:
 	
 	global_transform.origin = shipbase.global_transform.origin
 	
+	_target_point()
+	
 	if Input.is_action_just_pressed("sprint"):
 		if $H/V/Camera.current:
 			$GH/GV/Camera.make_current()
@@ -79,13 +81,21 @@ func _on_ShipBase_speed(vel) -> void:
 	$HUD.set_speed(vel)
 
 
-func _on_TakeRange_timeout() -> void:
-	if $GH/GV/Camera/RayCast.is_colliding():
-		var point = $GH/GV/Camera/RayCast.get_collision_point()
-		shipbase.set_target_point(point)
-		
-		point -= $GH/GV/Camera/RayCast.global_transform.origin
-		point.y = 0
-		var _distance = point.length()
-		emit_signal("distance", _distance)
-		
+func _target_point() -> void:
+	var cam_point = $GH/GV/Camera.global_transform.origin
+	
+	var cam_point_flat = cam_point
+	cam_point_flat.y = 0
+	
+	var d = 1.0 / (tan(abs($GH/GV/Camera.rotation.x)) / cam_point.y)
+	
+	var dir = -$GH/GV/Camera.global_transform.basis.z
+	dir.y = 0
+	dir = dir.normalized()
+	
+	var world_target = dir * d + cam_point_flat
+	
+	shipbase.set_target_point(world_target)
+	
+	emit_signal("distance", d)
+

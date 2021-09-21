@@ -19,13 +19,21 @@ func _process(delta: float) -> void:
 	global_transform.origin = shipbase.global_transform.origin
 	
 	if Input.is_action_just_pressed("select_torpedo"):
-		select(ENUM.ARM.TORP)
+		select(CONSTANTS.ARM.TORP)
 	
-	var look_to = shipbase.targeted_location
+	var cam = get_viewport().get_camera()
+	var cam_forward = - cam.global_transform.basis.z * 1000 
+	cam_forward.y = 0
+	cam_forward += $Torps.global_transform.origin
 	
-	look_to.y = $Torps.global_transform.origin.y
-	
-	$Torps.look_at(look_to, Vector3.UP)
+	var rot_dir = (-$Torps.global_transform.basis.z).cross(cam_forward)
+	rot_dir = rot_dir.y
+	if is_zero_approx(rot_dir):
+		pass
+	elif rot_dir > 0:
+		$Torps.rotate(Vector3.UP, delta * 2)
+	else:
+		$Torps.rotate(- Vector3.UP, delta * 2)
 	
 	if Input.is_action_just_pressed("fire"):
 		fire()
@@ -33,7 +41,7 @@ func _process(delta: float) -> void:
 
 func fire() -> void:
 	
-	if selected_weapon == ENUM.ARM.TORP:
+	if selected_weapon == CONSTANTS.ARM.TORP:
 		_launch_torp()
 		_salvo_counter += 1
 		$Torps/Salvo.start()
