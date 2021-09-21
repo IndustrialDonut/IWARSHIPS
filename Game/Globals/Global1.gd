@@ -7,4 +7,16 @@ enum ARM{
 	TORP
 }
 
-const DISTANCE_SCALE = 0.05 # for a ship that is 100 meters long IRL, it is 5 units in game.
+const UNITS_PER_METER = 0.05 # for a ship that is 100 meters long IRL, it is 5 units in game.
+const METERS_PER_UNIT = 1.0 / UNITS_PER_METER
+
+const UNIT_PER_KM = UNITS_PER_METER * 1000.0
+const KM_PER_UNIT = METERS_PER_UNIT / 1000.0
+
+const METERS_PER_NAUTICALMILE = 1852.0
+const NAUTICALMILE_PER_METER = 1.0 / METERS_PER_NAUTICALMILE
+const NAUTICALMILE_PER_UNIT = NAUTICALMILE_PER_METER * METERS_PER_UNIT
+
+#const KNOT_PER_MS = 1.94384 # knots per m/s
+
+const US2KTS = NAUTICALMILE_PER_UNIT * 3600
