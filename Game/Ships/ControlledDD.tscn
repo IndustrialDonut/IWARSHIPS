@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Ships/ShipBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TurretDouble.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ShipController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Ships/ControlledDD.gd" type="Script" id=4]
 [ext_resource path="res://Ships/Weapons.gd" type="Script" id=5]
+[ext_resource path="res://ShipHUD.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.2
@@ -15,14 +16,14 @@ bottom_radius = 0.2
 [node name="ControlledDD" type="Spatial"]
 script = ExtResource( 4 )
 
-[node name="ShipBase" parent="." instance=ExtResource( 1 )]
+[node name="ShipRB" parent="." instance=ExtResource( 1 )]
 
-[node name="ShipController" parent="." instance=ExtResource( 3 )]
-shipbase = NodePath("../ShipBase")
+[node name="CameraControl" parent="." instance=ExtResource( 3 )]
+ship_rb = NodePath("../ShipRB")
 
 [node name="Weapons" type="Spatial" parent="."]
 script = ExtResource( 5 )
-shipbase = NodePath("../ShipBase")
+shipbase = NodePath("../ShipRB")
 
 [node name="Torps" type="Spatial" parent="Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67276, 0 )
@@ -68,11 +69,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42479, -2.00531 )
 [node name="TurretDouble2" parent="Weapons/Guns" instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.42479, 2.10087 )
 
-[connection signal="rudder_angle" from="ShipBase" to="ShipController" method="_on_ShipBase_rudder_angle"]
-[connection signal="s_till" from="ShipBase" to="ShipController" method="_on_ShipBase_s_till"]
-[connection signal="speed" from="ShipBase" to="ShipController" method="_on_ShipBase_speed"]
-[connection signal="distance" from="ShipController" to="Weapons" method="_on_ShipController_distance"]
-[connection signal="distance" from="ShipController" to="ShipController/HUD" method="set_distance"]
+[node name="HUD" parent="." instance=ExtResource( 6 )]
+
+[connection signal="distance" from="CameraControl" to="Weapons" method="_on_ShipController_distance"]
 [connection signal="timeout" from="Weapons/Torps/Salvo" to="Weapons" method="_on_Salvo_timeout"]
 
-[editable path="ShipBase"]
+[editable path="ShipRB"]

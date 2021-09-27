@@ -1,4 +1,0 @@
-extends Camera
-
-
-var guncam

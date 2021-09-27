@@ -1,6 +1,7 @@
 extends Spatial
 
-export(NodePath) onready var shipbase = get_node(shipbase)
+#export(NodePath) onready var shipbase = get_node(shipbase)
+export(NodePath) onready var ship_rb = get_node(ship_rb)
 
 export var vertical_cam_speed := 0.1
 
@@ -33,7 +34,7 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	
-	global_transform.origin = shipbase.global_transform.origin
+	global_transform.origin = ship_rb.global_transform.origin
 	
 	_target_point()
 	
@@ -48,17 +49,6 @@ func _process(delta: float) -> void:
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	if Input.is_action_just_pressed("back"):
-		shipbase.till_decrease()
-	elif Input.is_action_just_pressed("forward"):
-		shipbase.till_increase()
-	
-	if Input.is_action_pressed("left"):
-		shipbase.set_rudder_key_state(-1)
-	elif Input.is_action_pressed("right"):
-		shipbase.set_rudder_key_state(1)
-	else:
-		shipbase.set_rudder_key_state(0)
 		
 	if Input.is_action_just_pressed("map"):
 		_bSkyView = !_bSkyView
@@ -69,16 +59,6 @@ func _process(delta: float) -> void:
 		else:
 			$H/V/Camera.transform = _last_local_cam_trans
 
-
-
-func _on_ShipBase_rudder_angle(normalized) -> void:
-	$HUD.set_rudder_angle(normalized)
-
-func _on_ShipBase_s_till(till) -> void:
-	$HUD.set_till(till)
-
-func _on_ShipBase_speed(vel) -> void:
-	$HUD.set_speed(vel)
 
 
 func _target_point() -> void:
@@ -95,7 +75,7 @@ func _target_point() -> void:
 	
 	var world_target = dir * d + cam_point_flat
 	
-	shipbase.set_target_point(world_target)
+	#shipbase.set_target_point(world_target)
 	
 	emit_signal("distance", d)
 

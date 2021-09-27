@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "CONSTANTS",
 "language": "GDScript",
 "path": "res://Globals/Global1.gd"
+}, {
+"base": "Node",
+"class": "Helper",
+"language": "GDScript",
+"path": "res://Globals/Helper.gd"
 } ]
 _global_script_class_icons={
-"CONSTANTS": ""
+"CONSTANTS": "",
+"Helper": ""
 }
 
 [application]
