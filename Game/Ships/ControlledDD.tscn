@@ -17,12 +17,6 @@ script = ExtResource( 4 )
 
 [node name="ShipBase" parent="." instance=ExtResource( 1 )]
 
-[node name="TurretDouble" parent="ShipBase/Hull/TurretContainer" index="0" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42479, -2.00531 )
-
-[node name="TurretDouble2" parent="ShipBase/Hull/TurretContainer" index="1" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.42479, 2.10087 )
-
 [node name="ShipController" parent="." instance=ExtResource( 3 )]
 shipbase = NodePath("../ShipBase")
 
@@ -33,42 +27,51 @@ shipbase = NodePath("../ShipBase")
 [node name="Torps" type="Spatial" parent="Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67276, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Weapons/Torps"]
+[node name="Tube1" type="MeshInstance" parent="Weapons/Torps"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="MeshInstance2" type="MeshInstance" parent="Weapons/Torps"]
+[node name="Tube2" type="MeshInstance" parent="Weapons/Torps"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.398493, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="MeshInstance3" type="MeshInstance" parent="Weapons/Torps"]
+[node name="Tube3" type="MeshInstance" parent="Weapons/Torps"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.805723, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="MeshInstance4" type="MeshInstance" parent="Weapons/Torps"]
+[node name="Tube4" type="MeshInstance" parent="Weapons/Torps"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.402337, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="MeshInstance5" type="MeshInstance" parent="Weapons/Torps"]
+[node name="Tube5" type="MeshInstance" parent="Weapons/Torps"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.809897, 0, 0 )
 mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Mount" type="MeshInstance" parent="Weapons/Torps"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18059, 0 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Salvo" type="Timer" parent="Weapons/Torps"]
 wait_time = 0.4
 
-[node name="MeshInstance" type="MeshInstance" parent="Weapons"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.492168, 0 )
-mesh = SubResource( 2 )
-material/0 = null
+[node name="Guns" type="Spatial" parent="Weapons"]
+
+[node name="TurretDouble" parent="Weapons/Guns" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42479, -2.00531 )
+
+[node name="TurretDouble2" parent="Weapons/Guns" instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.42479, 2.10087 )
 
 [connection signal="rudder_angle" from="ShipBase" to="ShipController" method="_on_ShipBase_rudder_angle"]
 [connection signal="s_till" from="ShipBase" to="ShipController" method="_on_ShipBase_s_till"]
 [connection signal="speed" from="ShipBase" to="ShipController" method="_on_ShipBase_speed"]
+[connection signal="distance" from="ShipController" to="Weapons" method="_on_ShipController_distance"]
 [connection signal="distance" from="ShipController" to="ShipController/HUD" method="set_distance"]
 [connection signal="timeout" from="Weapons/Torps/Salvo" to="Weapons" method="_on_Salvo_timeout"]
 

@@ -36,8 +36,6 @@ script = ExtResource( 1 )
 
 [node name="Hull" type="Spatial" parent="."]
 
-[node name="TurretContainer" type="Spatial" parent="Hull"]
-
 [node name="MeshInstance" type="MeshInstance" parent="Hull"]
 mesh = SubResource( 1 )
 material/0 = null
@@ -64,3 +62,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.116908, 4.04874 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.06524, 0 )
 
 [node name="CB" type="Spatial" parent="."]
+
+[node name="Propulsion" type="Spatial" parent="."]
