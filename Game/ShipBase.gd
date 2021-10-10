@@ -1,5 +1,6 @@
 extends RigidBody
 
+signal HUD_data_changed(data, type)
 
 func _physics_process(delta) -> void:
 	
@@ -16,3 +17,5 @@ func _physics_process(delta) -> void:
 		$Propulsion.set_rudder_key_state(0)
 
 
+func _on_HUD_data_changed(data, type) -> void:
+	emit_signal("HUD_data_changed", data, type)

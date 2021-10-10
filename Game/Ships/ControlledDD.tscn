@@ -19,7 +19,6 @@ script = ExtResource( 4 )
 [node name="ShipRB" parent="." instance=ExtResource( 1 )]
 
 [node name="CameraControl" parent="." instance=ExtResource( 3 )]
-ship_rb = NodePath("../ShipRB")
 
 [node name="Weapons" type="Spatial" parent="."]
 script = ExtResource( 5 )
@@ -71,7 +70,6 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.42
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 
-[connection signal="distance" from="CameraControl" to="Weapons" method="_on_ShipController_distance"]
+[connection signal="HUD_data_changed" from="ShipRB" to="." method="_on_ShipRB_HUD_data_changed"]
+[connection signal="distance" from="CameraControl" to="." method="_on_CameraControl_distance"]
 [connection signal="timeout" from="Weapons/Torps/Salvo" to="Weapons" method="_on_Salvo_timeout"]
-
-[editable path="ShipRB"]

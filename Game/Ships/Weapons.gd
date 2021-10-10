@@ -84,5 +84,5 @@ func _fire_shell():
 
 
 var _current_target_distance = 0
-func _on_ShipController_distance(dist) -> void:
+func set_distance(dist) -> void:
 	_current_target_distance = dist

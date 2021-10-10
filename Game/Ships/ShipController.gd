@@ -1,8 +1,5 @@
 extends Spatial
 
-#export(NodePath) onready var shipbase = get_node(shipbase)
-export(NodePath) onready var ship_rb = get_node(ship_rb)
-
 export var vertical_cam_speed := 0.1
 
 export var mouse_sens := 0.008
@@ -34,8 +31,6 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	
-	global_transform.origin = ship_rb.global_transform.origin
-	
 	_target_point()
 	
 	if Input.is_action_just_pressed("sprint"):
@@ -51,6 +46,10 @@ func _process(delta: float) -> void:
 	
 		
 	if Input.is_action_just_pressed("map"):
+		_toggle_map_view()
+
+
+func _toggle_map_view():
 		_bSkyView = !_bSkyView
 		
 		if _bSkyView: # use tween for smoother transition
@@ -58,7 +57,6 @@ func _process(delta: float) -> void:
 			$H/V/Camera.global_transform = $SkyView.global_transform
 		else:
 			$H/V/Camera.transform = _last_local_cam_trans
-
 
 
 func _target_point() -> void:

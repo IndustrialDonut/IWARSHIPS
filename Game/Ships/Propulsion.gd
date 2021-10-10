@@ -14,17 +14,17 @@ const max_rudder : float = 3.0 # degrees ofc
 
 export var rudder_rate : float = 10 # rudder traverse rate
 
-signal rudder_angle(normalized)
-signal speed(vel)
-signal s_till(till)
+signal rudder_angle(normalized, type)
+signal speed(vel, type)
+signal s_till(till, type)
 
 func _physics_process(delta: float) -> void:
 	_process_rudder_state(delta)
 	_throttle()
 	
-	emit_signal("rudder_angle", ($RP.rotation_degrees.y + max_rudder)/ (2 *max_rudder))
-	emit_signal("s_till", _till)
-	emit_signal("speed", ship_rb.global_transform.basis.xform_inv(ship_rb.linear_velocity))
+	emit_signal("rudder_angle", ($RP.rotation_degrees.y + max_rudder)/ (2 *max_rudder), "rudder")
+	emit_signal("s_till", _till, "till")
+	emit_signal("speed", ship_rb.global_transform.basis.xform_inv(ship_rb.linear_velocity), "speed")
 
 
 func till_increase() -> void:
