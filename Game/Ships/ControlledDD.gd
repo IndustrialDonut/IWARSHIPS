@@ -12,6 +12,7 @@ extends Spatial
 
 func _process(delta: float) -> void:
 	$CameraControl.global_transform.origin = $ShipRB.global_transform.origin
+	$Weapons.global_transform.origin = $ShipRB.global_transform.origin
 
 
 func _on_ShipRB_HUD_data_changed(data, type) -> void:

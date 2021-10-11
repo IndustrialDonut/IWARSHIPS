@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Ships/ShipBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TurretDouble.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Ships/ControlledDD.gd" type="Script" id=4]
 [ext_resource path="res://Ships/Weapons.gd" type="Script" id=5]
 [ext_resource path="res://ShipHUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Ships/TorpLauncher.gd" type="Script" id=7]
+[ext_resource path="res://Ships/Guns.gd" type="Script" id=8]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.2
@@ -22,10 +24,10 @@ script = ExtResource( 4 )
 
 [node name="Weapons" type="Spatial" parent="."]
 script = ExtResource( 5 )
-shipbase = NodePath("../ShipRB")
 
 [node name="Torps" type="Spatial" parent="Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67276, 0 )
+script = ExtResource( 7 )
 
 [node name="Tube1" type="MeshInstance" parent="Weapons/Torps"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
@@ -61,6 +63,7 @@ material/0 = null
 wait_time = 0.4
 
 [node name="Guns" type="Spatial" parent="Weapons"]
+script = ExtResource( 8 )
 
 [node name="TurretDouble" parent="Weapons/Guns" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42479, -2.00531 )
@@ -72,4 +75,4 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.42
 
 [connection signal="HUD_data_changed" from="ShipRB" to="." method="_on_ShipRB_HUD_data_changed"]
 [connection signal="distance" from="CameraControl" to="." method="_on_CameraControl_distance"]
-[connection signal="timeout" from="Weapons/Torps/Salvo" to="Weapons" method="_on_Salvo_timeout"]
+[connection signal="timeout" from="Weapons/Torps/Salvo" to="Weapons/Torps" method="_on_Salvo_timeout"]
