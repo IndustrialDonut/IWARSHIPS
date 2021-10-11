@@ -11,7 +11,7 @@ func set_distance(dist) -> void:
 func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("select_torpedo"):
-		_select(CONSTANTS.ARM.TORP)
+		_select(ENUMS.ARM.TORP)
 	
 	if Input.is_action_just_pressed("fire"):
 		_fire()
@@ -39,7 +39,7 @@ func _select(weapon_enum : int):
 
 func _fire() -> void:
 	
-	if selected_weapon == CONSTANTS.ARM.TORP:
+	if selected_weapon == ENUMS.ARM.TORP:
 		$Torps.fire()
 
 	else:

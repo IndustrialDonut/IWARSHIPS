@@ -1,12 +1,6 @@
 class_name CONSTANTS extends Node
 
 
-enum ARM{
-	HE,
-	AP,
-	TORP
-}
-
 const UNITS_PER_METER = 0.05 # for a ship that is 100 meters long IRL, it is 5 units in game.
 const METERS_PER_UNIT = 1.0 / UNITS_PER_METER
 

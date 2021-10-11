@@ -22,9 +22,9 @@ func _physics_process(delta: float) -> void:
 	_process_rudder_state(delta)
 	_throttle()
 	
-	emit_signal("rudder_angle", ($RP.rotation_degrees.y + max_rudder)/ (2 *max_rudder), "rudder")
-	emit_signal("s_till", _till, "till")
-	emit_signal("speed", ship_rb.global_transform.basis.xform_inv(ship_rb.linear_velocity), "speed")
+	emit_signal("rudder_angle", ($RP.rotation_degrees.y + max_rudder)/ (2 *max_rudder), ENUMS.DATA.RUDDER_ANGLE)
+	emit_signal("s_till", _till, ENUMS.DATA.SHIP_TILL)
+	emit_signal("speed", ship_rb.global_transform.basis.xform_inv(ship_rb.linear_velocity), ENUMS.DATA.SHIP_VELOCITY)
 
 
 func till_increase() -> void:

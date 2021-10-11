@@ -16,13 +16,7 @@ func _process(delta: float) -> void:
 
 
 func _on_ShipRB_HUD_data_changed(data, type) -> void:
-	match type:
-		"speed":
-			$HUD.set_speed(data)
-		"rudder":
-			$HUD.set_rudder_angle(data)
-		"till":
-			$HUD.set_till(data)
+	$HUD.set_basics(data, type)
 
 
 func _on_CameraControl_distance(dist) -> void:

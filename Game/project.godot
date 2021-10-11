@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://Globals/Global1.gd"
 }, {
 "base": "Node",
+"class": "ENUMS",
+"language": "GDScript",
+"path": "res://Globals/Enums.gd"
+}, {
+"base": "Node",
 "class": "Helper",
 "language": "GDScript",
 "path": "res://Globals/Helper.gd"
 } ]
 _global_script_class_icons={
 "CONSTANTS": "",
+"ENUMS": "",
 "Helper": ""
 }
 

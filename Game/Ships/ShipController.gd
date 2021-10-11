@@ -1,5 +1,7 @@
 extends Spatial
 
+## Much more accurately named camera controller
+
 export var vertical_cam_speed := 0.1
 
 export var mouse_sens := 0.008
@@ -72,8 +74,6 @@ func _target_point() -> void:
 	dir = dir.normalized()
 	
 	var world_target = dir * d + cam_point_flat
-	
-	#shipbase.set_target_point(world_target)
 	
 	emit_signal("distance", d)
 
