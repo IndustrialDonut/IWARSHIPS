@@ -12,7 +12,9 @@ extends Spatial
 
 func _process(delta: float) -> void:
 	$CameraControl.global_transform.origin = $ShipRB.global_transform.origin
+	
 	$Weapons.global_transform.origin = $ShipRB.global_transform.origin
+	$Weapons.rotation.y = $ShipRB.rotation.y # only rotate in the plane (vertical stabilization)
 
 
 func _on_ShipRB_HUD_data_changed(data, type) -> void:
@@ -22,3 +24,7 @@ func _on_ShipRB_HUD_data_changed(data, type) -> void:
 func _on_CameraControl_distance(dist) -> void:
 	$Weapons.set_distance(dist)
 	$HUD.set_distance(dist)
+
+
+func _on_CameraControl_targeted_point(point_global) -> void:
+	$TARGET.global_transform.origin = point_global

@@ -10,8 +10,7 @@ enum DATA{
 
 
 enum ARM{
-	HE,
-	AP,
+	GUN,
 	TORP
 }
 

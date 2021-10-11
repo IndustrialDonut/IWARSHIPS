@@ -59,6 +59,18 @@ margin_left = 0.315002
 margin_top = 11.3393
 margin_right = 40.315
 margin_bottom = 25.3393
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tof" type="Label" parent="reticle"]
+margin_left = 55.6132
+margin_top = 10.7447
+margin_right = 95.6132
+margin_bottom = 24.7447
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Till" type="Label" parent="."]
 anchor_top = 1.0

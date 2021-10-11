@@ -18,6 +18,7 @@ func set_distance(dist) -> void:
 		
 		$reticle/range.text = Helper.decimal_place_string(a, 2) + " km"
 		
+		$reticle/tof.text = "(not fully implemented) " + Helper.decimal_place_string(a / 0.8, 2) + " s" # if shell speed is 800m/s
 	else:
 		
 		$reticle/range.text = ""

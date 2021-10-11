@@ -1,12 +1,12 @@
 extends Spatial
 
-## Much more accurately named camera controller
+## Much more accurately named Camera Controller
 
-export var vertical_cam_speed := 0.1
+export var vertical_cam_speed := 0.08
 
 export var mouse_sens := 0.008
 
-export var max_range = 1000
+export var max_range := 1000.0
 
 onready var _max_h = tan(deg2rad(5)) * max_range # 5 is the value IN the gun camera
 
@@ -16,6 +16,7 @@ var _last_local_cam_trans
 
 signal distance(dist)
 
+signal targeted_point(point_global)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -62,18 +63,27 @@ func _toggle_map_view():
 
 
 func _target_point() -> void:
-	var cam_point = $GH/GV/Camera.global_transform.origin
+	
+	var cam = $GH/GV/Camera if $GH/GV/Camera.current else $H/V/Camera
+	
+	var cam_angle = (-cam.global_transform.basis.z).angle_to(Vector3.UP) - deg2rad(90)
+	
+	var cam_point = cam.global_transform.origin
 	
 	var cam_point_flat = cam_point
 	cam_point_flat.y = 0
 	
-	var d = 1.0 / (tan(abs($GH/GV/Camera.rotation.x)) / cam_point.y)
+	if cam_angle != 0:
+		
+		var d = 1.0 / (tan(abs(cam_angle)) / cam_point.y)
+		
+		emit_signal("distance", d)
 	
-	var dir = -$GH/GV/Camera.global_transform.basis.z
-	dir.y = 0
-	dir = dir.normalized()
-	
-	var world_target = dir * d + cam_point_flat
-	
-	emit_signal("distance", d)
+		var dir = -cam.global_transform.basis.z
+		dir.y = 0
+		dir = dir.normalized()
+		
+		var world_target = dir * d + cam_point_flat
+		
+		emit_signal("targeted_point", world_target)
 
