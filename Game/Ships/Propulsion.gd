@@ -3,16 +3,12 @@ extends Spatial
 export(NodePath) onready var ship_rb = get_node(ship_rb)
 
 export var quarter_speed : float = 10 # knots?
-
-var _till : int
-
-const max_till = 4 # min is -1, 0 is no throttle
-
-var _rudder_key_state = 0
-
+export var rudder_rate : float = 10 # rudder traverse rate
 const max_rudder : float = 3.0 # degrees ofc
 
-export var rudder_rate : float = 10 # rudder traverse rate
+var _till : int = ENUMS.SHIP_TILL.REST
+
+var _rudder_key_state = 0
 
 signal rudder_angle(normalized, type)
 signal speed(vel, type)
@@ -28,11 +24,11 @@ func _physics_process(delta: float) -> void:
 
 
 func till_increase() -> void:
-	if _till < max_till:
+	if _till < ENUMS.SHIP_TILL.FULL:
 		_till += 1
 
 func till_decrease() -> void:
-	if _till > -1:
+	if _till > ENUMS.SHIP_TILL.BACK:
 		_till -= 1
 
 
@@ -57,5 +53,5 @@ func _process_rudder_state(delta) -> void:
 
 
 func _throttle() -> void:
-	var force = _till * quarter_speed
+	var force = (_till - ENUMS.SHIP_TILL.REST) * quarter_speed
 	ship_rb.add_force(-$RP.global_transform.basis.z * force, $RP.global_transform.origin - ship_rb.global_transform.origin)

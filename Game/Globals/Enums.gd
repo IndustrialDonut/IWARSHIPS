@@ -14,3 +14,12 @@ enum ARM{
 	AP,
 	TORP
 }
+
+enum SHIP_TILL{
+	BACK,
+	REST,
+	QUARTER,
+	HALF,
+	THREE_Q,
+	FULL
+}

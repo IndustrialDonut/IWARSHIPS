@@ -31,17 +31,17 @@ func _set_rudder_angle(normalized) -> void:
 func _set_till(till) -> void:
 	var word
 	match till:
-		-1:
+		ENUMS.SHIP_TILL.BACK:
 			word = "BACK"
-		0:
+		ENUMS.SHIP_TILL.REST:
 			word = "REST"
-		1:
+		ENUMS.SHIP_TILL.QUARTER:
 			word = "1/4"
-		2:
+		ENUMS.SHIP_TILL.HALF:
 			word = "2/4"
-		3:
+		ENUMS.SHIP_TILL.THREE_Q:
 			word = "3/4"
-		4:
+		ENUMS.SHIP_TILL.FULL:
 			word = "FULL"
 	
 	$Till.text = word
