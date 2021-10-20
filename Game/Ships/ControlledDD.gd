@@ -28,3 +28,4 @@ func _on_CameraControl_distance(dist) -> void:
 
 func _on_CameraControl_targeted_point(point_global) -> void:
 	$TARGET.global_transform.origin = point_global
+	$Weapons.set_target_point(point_global)

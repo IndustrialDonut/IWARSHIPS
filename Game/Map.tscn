@@ -8,6 +8,7 @@ material = ExtResource( 1 )
 size = Vector2( 2000, 2000 )
 
 [node name="Map" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.219818, -0.0407777, 0.610034 )
 mesh = SubResource( 1 )
 material/0 = null
 
