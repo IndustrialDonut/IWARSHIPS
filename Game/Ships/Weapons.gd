@@ -17,8 +17,16 @@ func set_target_point(point_global):
 
 func _physics_process(delta):
 	if direction:
-		$Slot2/Torps.look_at(direction, Vector3.UP)
-		$Slot2/Torps.rotation_degrees.x = 0
+		
+		#$Slot2/Torps.rotation_degrees.x = 0
+		# instead of using rotation what about this:
+		
+		var no_y_direction = direction
+		no_y_direction.y = $Slot2/Torps.global_transform.origin.y
+		
+		$Slot2/Torps.look_at(no_y_direction, Vector3.UP)
+
+
 #$Slot1/TurretDouble2.rotation.y = lerp_angle($Slot1/TurretDouble2.rotation.y, atan2(direction.x, direction.y) - rotation.y, delta * angular_acceleration)
 
 

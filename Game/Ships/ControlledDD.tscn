@@ -40,7 +40,7 @@ script = ExtResource( 9 )
 contained = 1
 
 [node name="Torps" type="Spatial" parent="Weapons/Slot2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0378252, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 7 )
 
 [node name="Tube1" type="MeshInstance" parent="Weapons/Slot2/Torps"]
