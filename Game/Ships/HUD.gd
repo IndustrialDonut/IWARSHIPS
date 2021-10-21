@@ -1,7 +1,7 @@
 extends Control
 
 
-func set_basics(data, type):
+func set_ship_basics(data, type):
 	match type:
 		ENUMS.DATA.SHIP_VELOCITY:
 			_set_speed(data)
@@ -9,9 +9,11 @@ func set_basics(data, type):
 			_set_rudder_angle(data)
 		ENUMS.DATA.SHIP_TILL:
 			_set_till(data)
+		ENUMS.DATA.TARGET_DISTANCE:
+			_set_distance(data)
 
 
-func set_distance(dist) -> void:
+func _set_distance(dist) -> void:
 	if get_viewport().get_camera().is_in_group("guncam"):
 		
 		var a = dist * CONSTANTS.KM_PER_UNIT

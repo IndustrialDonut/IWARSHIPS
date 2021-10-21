@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Weapons/TorpLauncher.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.2
+bottom_radius = 0.2
+
+[sub_resource type="CylinderMesh" id=2]
+
+[node name="Torps" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Tube1" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Tube2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.398493, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Tube3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.805723, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Tube4" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.402337, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Tube5" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.809897, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Mount" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18059, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Salvo" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="timeout" from="Salvo" to="." method="_on_Salvo_timeout"]

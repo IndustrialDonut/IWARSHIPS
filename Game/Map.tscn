@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Shader/Water.material" type="Material" id=1]
 [ext_resource path="res://Ships/ControlledDD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ShipHUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Map.gd" type="Script" id=4]
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 1 )
@@ -11,9 +13,17 @@ size = Vector2( 2000, 2000 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.219818, -0.0407777, 0.610034 )
 mesh = SubResource( 1 )
 material/0 = null
+script = ExtResource( 4 )
 
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.773918, 0.633286, 0, -0.633286, -0.773918, 0, 86.1843, 0 )
 light_energy = 0.52
 
 [node name="DD" parent="." instance=ExtResource( 2 )]
+
+[node name="ShipConfigurer" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]

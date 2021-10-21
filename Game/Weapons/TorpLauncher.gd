@@ -1,5 +1,7 @@
 extends Spatial
 
+var type : int = ENUMS.ARM.TORP
+
 var torp_salvo_size = 3
 
 var _salvo_counter = 0
@@ -12,7 +14,7 @@ func fire():
 
 
 func _launch_torp() -> void:
-	var torp = preload("res://Ships/Torpedo_0.tscn").instance()
+	var torp = preload("res://Weapons/Torpedo_0.tscn").instance()
 	owner.add_child(torp)
 	torp.setup(global_transform)
 

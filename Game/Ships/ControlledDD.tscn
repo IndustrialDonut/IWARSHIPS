@@ -1,19 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Ships/ShipBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://TurretDouble.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Weapons/TurretDouble.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ShipController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Ships/ControlledDD.gd" type="Script" id=4]
 [ext_resource path="res://Ships/Weapons.gd" type="Script" id=5]
-[ext_resource path="res://ShipHUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Ships/TorpLauncher.gd" type="Script" id=7]
+[ext_resource path="res://Weapons/Torps.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Ships/WeaponSlot.gd" type="Script" id=9]
-
-[sub_resource type="CylinderMesh" id=1]
-top_radius = 0.2
-bottom_radius = 0.2
-
-[sub_resource type="CylinderMesh" id=2]
 
 [sub_resource type="CubeMesh" id=3]
 
@@ -22,8 +15,6 @@ script = ExtResource( 4 )
 
 [node name="ShipRB" parent="." instance=ExtResource( 1 )]
 
-[node name="CameraControl" parent="." instance=ExtResource( 3 )]
-
 [node name="Weapons" type="Spatial" parent="."]
 script = ExtResource( 5 )
 
@@ -31,49 +22,14 @@ script = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35749, 2.36153 )
 script = ExtResource( 9 )
 
-[node name="TurretDouble2" parent="Weapons/Slot1" instance=ExtResource( 2 )]
+[node name="TurretDouble" parent="Weapons/Slot1" instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.067301, -0.260658 )
 
 [node name="Slot2" type="Spatial" parent="Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63493, 0 )
 script = ExtResource( 9 )
-contained = 1
 
-[node name="Torps" type="Spatial" parent="Weapons/Slot2"]
-script = ExtResource( 7 )
-
-[node name="Tube1" type="MeshInstance" parent="Weapons/Slot2/Torps"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="Tube2" type="MeshInstance" parent="Weapons/Slot2/Torps"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.398493, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="Tube3" type="MeshInstance" parent="Weapons/Slot2/Torps"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.805723, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="Tube4" type="MeshInstance" parent="Weapons/Slot2/Torps"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.402337, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="Tube5" type="MeshInstance" parent="Weapons/Slot2/Torps"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.809897, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="Mount" type="MeshInstance" parent="Weapons/Slot2/Torps"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18059, 0 )
-mesh = SubResource( 2 )
-material/0 = null
-
-[node name="Salvo" type="Timer" parent="Weapons/Slot2/Torps"]
-wait_time = 0.4
+[node name="Torps" parent="Weapons/Slot2" instance=ExtResource( 6 )]
 
 [node name="Slot3" type="Spatial" parent="Weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42765, -2.43997 )
@@ -82,13 +38,12 @@ script = ExtResource( 9 )
 [node name="TurretDouble" parent="Weapons/Slot3" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00286043, 0.434656 )
 
-[node name="HUD" parent="." instance=ExtResource( 6 )]
-
 [node name="TARGET" type="MeshInstance" parent="."]
 mesh = SubResource( 3 )
 material/0 = null
 
+[node name="CameraControl" parent="." instance=ExtResource( 3 )]
+
 [connection signal="HUD_data_changed" from="ShipRB" to="." method="_on_ShipRB_HUD_data_changed"]
 [connection signal="distance" from="CameraControl" to="." method="_on_CameraControl_distance"]
 [connection signal="targeted_point" from="CameraControl" to="." method="_on_CameraControl_targeted_point"]
-[connection signal="timeout" from="Weapons/Slot2/Torps/Salvo" to="Weapons/Slot2/Torps" method="_on_Salvo_timeout"]

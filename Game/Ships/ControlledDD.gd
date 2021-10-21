@@ -9,6 +9,7 @@ extends Spatial
 
 #export var health : float = 100
 
+signal updated_player_HUD(info, type)
 
 func _process(delta: float) -> void:
 	$CameraControl.global_transform.origin = $ShipRB.global_transform.origin
@@ -18,12 +19,14 @@ func _process(delta: float) -> void:
 
 
 func _on_ShipRB_HUD_data_changed(data, type) -> void:
-	$HUD.set_basics(data, type)
+	#$HUD.set_basics(data, type)
+	emit_signal("updated_player_HUD", data, type)
 
 
 func _on_CameraControl_distance(dist) -> void:
 	$Weapons.set_distance(dist)
-	$HUD.set_distance(dist)
+	#$HUD.set_distance(dist)
+	emit_signal("updated_player_HUD", dist, ENUMS.DATA.TARGET_DISTANCE)
 
 
 func _on_CameraControl_targeted_point(point_global) -> void:

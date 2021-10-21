@@ -1,5 +1,7 @@
 extends Spatial
 
+var type : int = ENUMS.ARM.GUN
+
 var trav_speed = 0.01
 
 var on_target := false
