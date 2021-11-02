@@ -2,7 +2,8 @@
 
 [ext_resource path="res://DestroyerBase.gd" type="Script" id=1]
 [ext_resource path="res://Ships/ShipBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://TurretDouble.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Weapons/TurretDouble.tscn" type="PackedScene" id=3]
+
 
 [node name="DestroyerBase" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
