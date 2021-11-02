@@ -1,5 +1,7 @@
 extends Spatial
 
+const trav_rate = 20 # deg/s
+
 var type : int = ENUMS.ARM.TORP
 
 var torp_salvo_size = 3

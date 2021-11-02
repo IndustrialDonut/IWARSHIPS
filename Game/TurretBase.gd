@@ -2,7 +2,7 @@ extends Spatial
 
 var type : int = ENUMS.ARM.GUN
 
-var trav_speed = 0.01
+const trav_rate = 20 # deg/s
 
 var on_target := false
 
@@ -13,7 +13,7 @@ func _ready():
 func command_fire():
 	for gun in $Horizontal/Vertical.get_children():
 		gun.fire()
-		
+
 
 func aim(point):
 	on_target = false
@@ -25,14 +25,14 @@ func aim(point):
 	else:
 		if abs(cross.y)<3:
 			if cross.y > 0:
-				$Horizontal.rotate_y(trav_speed/5.0)
+				$Horizontal.rotate_y(trav_rate/5.0)
 			elif cross.y < 0:
-				$Horizontal.rotate_y(-trav_speed/5.0)
+				$Horizontal.rotate_y(-trav_rate/5.0)
 		else:
 			if cross.y > 0:
-				$Horizontal.rotate_y(trav_speed)
+				$Horizontal.rotate_y(trav_rate)
 			elif cross.y < 0:
-				$Horizontal.rotate_y(-trav_speed)
+				$Horizontal.rotate_y(-trav_rate)
 			
 		var el = $Horizontal/Vertical.get_child(0).calc_el((point - self.global_transform.origin).length())
 		$Horizontal/Vertical.rotation.x = lerp_angle($Horizontal/Vertical.rotation.x, el, 0.1)
