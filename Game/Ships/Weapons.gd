@@ -1,32 +1,34 @@
 extends Spatial
 
+# consts at top
+const ROTATION_SPEED = 1
 
 var selected_weapon : int = ENUMS.ARM.GUN # start with nothing selected
 
-
 #var angular_acceleration = 7
-var target = Vector3()
-
-
-const ROTATION_SPEED = 1
-
-
+var _local_target = Vector3()
 
 func set_target_point(point_global):
-	target = point_global
+	_local_target = point_global - global_transform.origin
 
 
 func _physics_process(delta):
-
-	var front = $Slot2.transform.basis.z
-	var ang = Vector2(front.x, front.z).angle_to(Vector2(target.x, target.z))
-
-	$Slot2.rotation_degrees.x = 0
-	if(rad2deg(ang) <= 179): #Creating a threshold otherwise there is a slight vibration
-		$Slot2.rotate_object_local(Vector3(0,1,0), sign(ang) * ROTATION_SPEED * delta)
 	
-#$Slot1/TurretDouble2.rotation.y = lerp_angle($Slot1/TurretDouble2.rotation.y, atan2(direction.x, direction.y) - rotation.y, delta * angular_acceleration)
-
+	var front = $Slot2.global_transform.basis.z
+	
+	var ang = Vector2(front.x, front.z).angle_to(
+				Vector2(_local_target.x, _local_target.z)
+				)
+	
+	# Comment explaining what this is for?
+	$Slot2.rotation_degrees.x = 0
+	
+	# Creating a threshold otherwise there is a slight vibration
+	if(rad2deg(ang) <= 179): 
+		$Slot2.rotate_object_local(
+				Vector3(0,1,0), 
+				sign(ang) * ROTATION_SPEED * delta
+				)
 
 
 func _process(delta: float) -> void:
