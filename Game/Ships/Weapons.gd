@@ -4,21 +4,26 @@ extends Spatial
 var selected_weapon : int = -1 # start with nothing selected
 
 #var angular_acceleration = 7
-var direction
-var torpedo_lockmax = 0
-var torpedo_lockmin = 0
+var target = Vector3()
+
+
+const ROTATION_SPEED = 1
 
 func set_distance(dist) -> void:
 	pass
 	#$Guns.set_distance(dist)
 
 func set_target_point(point_global):
-	direction = point_global
+	target = point_global
 
 func _physics_process(delta):
-	if direction:
-		$Slot2/Torps.look_at(direction, Vector3.UP)
-		$Slot2/Torps.rotation_degrees.x = 0
+	var front = $Slot2.transform.basis.z
+	var ang = Vector2(front.x, front.z).angle_to(Vector2(target.x, target.z))
+
+	$Slot2.rotation_degrees.x = 0
+	if(rad2deg(ang) <= 179): #Creating a threshold otherwise there is a slight vibration
+		$Slot2.rotate_object_local(Vector3(0,1,0), sign(ang) * ROTATION_SPEED * delta)
+	
 #$Slot1/TurretDouble2.rotation.y = lerp_angle($Slot1/TurretDouble2.rotation.y, atan2(direction.x, direction.y) - rotation.y, delta * angular_acceleration)
 
 
