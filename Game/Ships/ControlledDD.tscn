@@ -8,7 +8,7 @@
 [ext_resource path="res://Weapons/Torps.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Ships/WeaponSlot.gd" type="Script" id=9]
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=1]
 
 [node name="ControlledDD" type="Spatial"]
 script = ExtResource( 4 )
@@ -39,7 +39,7 @@ script = ExtResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00286043, 0.434656 )
 
 [node name="TARGET" type="MeshInstance" parent="."]
-mesh = SubResource( 3 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="CameraControl" parent="." instance=ExtResource( 3 )]
