@@ -24,7 +24,7 @@ func _on_ShipRB_HUD_data_changed(data, type) -> void:
 
 
 func _on_CameraControl_distance(dist) -> void:
-	$Weapons.set_distance(dist)
+	#$Weapons.set_distance(dist)
 	#$HUD.set_distance(dist)
 	emit_signal("updated_player_HUD", dist, ENUMS.DATA.TARGET_DISTANCE)
 

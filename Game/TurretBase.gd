@@ -51,26 +51,10 @@ func _on_Timer_timeout():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 var muzzle_velocity = 800 # strictly the horizontal velocity, in m/s
 var _muzzle_velocity = muzzle_velocity * CONSTANTS.UNITS_PER_METER
 
 var _current_target_distance = 0
-
-func set_distance(dist):
-	_current_target_distance = dist
-
 
 func fire():
 	_fire_shell()

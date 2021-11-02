@@ -7,10 +7,6 @@ var direction
 var torpedo_lockmax = 0
 var torpedo_lockmin = 0
 
-func set_distance(dist) -> void:
-	pass
-	#$Guns.set_distance(dist)
-
 
 func set_target_point(point_global):
 	direction = point_global
