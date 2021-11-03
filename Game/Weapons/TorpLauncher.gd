@@ -1,6 +1,6 @@
 extends Spatial
 
-const trav_rate = 20 # deg/s
+const ROTATION_SPEED = 40 # deg/s
 
 var type : int = ENUMS.ARM.TORP
 
@@ -17,7 +17,7 @@ func fire():
 
 func _launch_torp() -> void:
 	var torp = preload("res://Weapons/Torpedo_0.tscn").instance()
-	owner.add_child(torp)
+	add_child(torp)
 	torp.setup(global_transform)
 
 

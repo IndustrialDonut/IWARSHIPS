@@ -2,7 +2,7 @@ extends Spatial
 
 var type : int = ENUMS.ARM.GUN
 
-const trav_rate = 20 # deg/s
+const ROTATION_SPEED = 20 # deg/s
 
 var on_target := false
 
