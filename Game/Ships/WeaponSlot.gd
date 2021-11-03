@@ -4,7 +4,7 @@ var _local_target = Vector3()
 
 func _physics_process(delta: float) -> void:
 	
-	var trav_rate = deg2rad(get_child(0).ROTATION_SPEED)
+	var trav_rate = get_child(0).ROTATION_SPEED
 	
 	var front = global_transform.basis.z
 	
@@ -22,6 +22,10 @@ func _physics_process(delta: float) -> void:
 
 func set_global_target(point_global):
 	_local_target = point_global - global_transform.origin
+	
+	if(get_contained_type() == ENUMS.ARM.GUN):
+		
+		get_child(0).set_global_target(point_global)
 
 
 func change_out_weapon(weapon_scene):
@@ -37,5 +41,5 @@ func fire():
 
 
 func get_contained_type():
-	return get_child(0).type
+	return get_child(0).TYPE
 

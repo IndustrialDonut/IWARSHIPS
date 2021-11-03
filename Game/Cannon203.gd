@@ -2,12 +2,10 @@ extends Spatial
 
 
 func fire():
-	
 	$MainCannon.fire()
 
 
 func get_gun_elevation(distance):
-	
 	return $MainCannon.get_gun_elevation(distance)
 
 

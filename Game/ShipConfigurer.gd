@@ -25,6 +25,9 @@ func set_num_slots(num):
 		new.size_flags_horizontal = SIZE_EXPAND_FILL
 		
 		new.connect("item_selected", self, "_option_changed")
+	
+	# sync the default UI loadout to the ship
+	_option_changed(null)
 
 
 func _option_changed(_option):

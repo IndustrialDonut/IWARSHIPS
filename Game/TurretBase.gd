@@ -1,19 +1,37 @@
 extends Spatial
 
-var type : int = ENUMS.ARM.GUN
+const TYPE : int = ENUMS.ARM.GUN
+const ROTATION_SPEED = deg2rad(20)
+const ELEVATION_SPEED = deg2rad(10)
 
-const ROTATION_SPEED = 20 # deg/s
-
-var on_target := false
+var _elevation_target = 0.0
 
 func _ready():
 	for gun in $Horizontal/Vertical.get_children():
 		gun.load_gun()
 
 
+func _physics_process(delta: float) -> void:
+	
+	var diff = _elevation_target - $Horizontal/Vertical.rotation.x
+	
+	if abs(diff) > deg2rad(0.1):
+		
+		var dir = sign(diff)
+		
+		$Horizontal/Vertical.rotation.x += dir * delta * ROTATION_SPEED
+
+
 func fire():
 	for gun in $Horizontal/Vertical.get_children():
 		gun.fire()
+
+
+func set_global_target(point_global):
+	var dist = (point_global - global_transform.origin).length()
+	
+	# only need ONE elevation 
+	_elevation_target = $Horizontal/Vertical.get_child(0).get_gun_elevation(dist)
 
 
 func _on_Timer_timeout():
@@ -23,25 +41,3 @@ func _on_Timer_timeout():
 
 
 
-
-
-
-var muzzle_velocity = 800 # strictly the horizontal velocity, in m/s
-var _muzzle_velocity = muzzle_velocity * CONSTANTS.UNITS_PER_METER
-
-var _current_target_distance = 0
-
-#func fire():
-#	_fire_shell()
-
-
-func _fire_shell():
-	pass
-#	var shell = preload("res://Shell203JP.tscn").instance()
-#	owner.add_child(shell)
-#	shell.global_transform = global_transform
-#	shell.linear_velocity = _muzzle_velocity * -shell.global_transform.basis.z
-#	var h_time_half = (_current_target_distance / _muzzle_velocity) / 2.0
-#	var v0 = h_time_half * 9.8 #* CONSTANTS.UNITS_PER_METER
-#
-#	shell.linear_velocity.y += v0

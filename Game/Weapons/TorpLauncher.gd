@@ -1,8 +1,8 @@
 extends Spatial
 
-const ROTATION_SPEED = 40 # deg/s
+const ROTATION_SPEED = deg2rad(40) # deg/s
 
-var type : int = ENUMS.ARM.TORP
+const TYPE : int = ENUMS.ARM.TORP
 
 var torp_salvo_size = 3
 

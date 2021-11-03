@@ -8,17 +8,12 @@ var selected_weapon : int = ENUMS.ARM.GUN
 func set_target_point(point_global):
 	for slot in get_children():
 		slot.set_global_target(point_global)
-	
 
 
 func _physics_process(delta):
 	
-
-	
 	# Comment explaining what this is for?
 	$Slot2.rotation_degrees.x = 0
-	
-
 
 
 func _process(delta: float) -> void:
