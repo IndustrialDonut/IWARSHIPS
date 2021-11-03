@@ -8,42 +8,17 @@ var on_target := false
 
 func _ready():
 	for gun in $Horizontal/Vertical.get_children():
-		gun.loaded = true
+		gun.load_gun()
 
-func command_fire():
+
+func fire():
 	for gun in $Horizontal/Vertical.get_children():
 		gun.fire()
 
 
-func aim(point):
-	on_target = false
-	
-	var cross = ( - $Horizontal.global_transform.basis.z).cross(point - self.global_transform.origin)
-	
-	if abs(cross.y)<1:
-		on_target = true
-	else:
-		if abs(cross.y)<3:
-			if cross.y > 0:
-				$Horizontal.rotate_y(trav_rate/5.0)
-			elif cross.y < 0:
-				$Horizontal.rotate_y(-trav_rate/5.0)
-		else:
-			if cross.y > 0:
-				$Horizontal.rotate_y(trav_rate)
-			elif cross.y < 0:
-				$Horizontal.rotate_y(-trav_rate)
-			
-		var el = $Horizontal/Vertical.get_child(0).calc_el((point - self.global_transform.origin).length())
-		$Horizontal/Vertical.rotation.x = lerp_angle($Horizontal/Vertical.rotation.x, el, 0.1)
-
-#func reset():
-#	$Horizontal.rotation.y = lerp_angle($Horizontal.rotation.y, 0 ,0.1)
-
-
 func _on_Timer_timeout():
 	for gun in $Horizontal/Vertical.get_children():
-		gun.loaded = true
+		gun.load_gun()
 
 
 
@@ -56,8 +31,8 @@ var _muzzle_velocity = muzzle_velocity * CONSTANTS.UNITS_PER_METER
 
 var _current_target_distance = 0
 
-func fire():
-	_fire_shell()
+#func fire():
+#	_fire_shell()
 
 
 func _fire_shell():

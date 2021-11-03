@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://MainCannon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cannon203.gd" type="Script" id=2]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 3.0
+
+[node name="Cannon203" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="MainCannon" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0013 )
+
+[node name="BarrelMesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.4916 )
+mesh = SubResource( 1 )
+material/0 = null

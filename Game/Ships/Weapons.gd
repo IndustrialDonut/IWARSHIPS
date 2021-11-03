@@ -3,7 +3,7 @@ extends Spatial
 # consts at top
 const ROTATION_SPEED = 1
 
-var selected_weapon : int = ENUMS.ARM.GUN # start with nothing selected
+var selected_weapon : int = ENUMS.ARM.GUN
 
 #var angular_acceleration = 7
 var _local_target = Vector3()
