@@ -21,9 +21,6 @@ light_energy = 0.52
 
 [node name="DD" parent="." instance=ExtResource( 2 )]
 
-[node name="ShipConfigurer" type="Control" parent="."]
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[connection signal="slot_changed" from="HUD" to="." method="_on_HUD_slot_changed"]

@@ -1,5 +1,11 @@
 extends Control
 
+signal slot_changed(slot_index, weapon_scene)
+
+func set_num_slots(num):
+	
+	$ShipConfigurer.set_num_slots(num)
+
 
 func set_ship_basics(data, type):
 	match type:
@@ -54,3 +60,7 @@ func _set_speed(vel : Vector3) -> void:
 	vel = -vel
 	$Speed.text = Helper.decimal_place_string(vel.z * CONSTANTS.US2KTS / 10.0, 1) + " kts" # scale speed down.
 
+
+
+func _on_ShipConfigurer_slot_changed(slot_index, weapon_scene) -> void:
+	emit_signal("slot_changed", slot_index, weapon_scene)

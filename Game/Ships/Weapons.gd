@@ -43,6 +43,11 @@ func _process(delta: float) -> void:
 		_fire(selected_weapon)
 
 
+func set_slot_weapon(index, weapon_scene):
+	var slot = get_child(index)
+	slot.change_out_weapon(weapon_scene)
+
+
 func _select(weapon_enum : int):
 	selected_weapon = weapon_enum
 

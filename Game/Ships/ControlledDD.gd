@@ -18,6 +18,10 @@ func _process(delta: float) -> void:
 	$Weapons.rotation.y = $ShipRB.rotation.y # only rotate in the plane (vertical stabilization)
 
 
+func set_slot_weapon(index, weapon_scene):
+	$Weapons.set_slot_weapon(index, weapon_scene)
+
+
 func _on_ShipRB_HUD_data_changed(data, type) -> void:
 	#$HUD.set_basics(data, type)
 	emit_signal("updated_player_HUD", data, type)

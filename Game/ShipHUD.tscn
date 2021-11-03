@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Ships/HUD.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://ShipConfigurer.gd" type="Script" id=3]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -93,3 +94,22 @@ margin_bottom = -30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ShipConfigurer" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipConfigurer"]
+margin_left = -210.379
+margin_top = -137.589
+margin_right = 198.621
+margin_bottom = -105.589
+alignment = 1
+
+[connection signal="slot_changed" from="ShipConfigurer" to="." method="_on_ShipConfigurer_slot_changed"]
