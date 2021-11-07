@@ -6,9 +6,9 @@ render_mode blend_mix;
 
 float height(float x, float z, float time){
 	// I take it the texture just wraps around when the sample points goes out of bounds
-	float wind = 0.1f * texture(noise, vec2(x,z) + time/52f).x;
+	float wind = 0.1f * texture(noise, vec2(x,z) + time/80f).x;
 	
-	float main_waves = 0.5f * sin(x / 20f + time/2f) * cos(z / 25f + time/3f);
+	float main_waves = 0.5f * sin(x / 20f + time/3f) * cos(z / 25f + time/4f);
 	
 	return main_waves + wind;
 }
@@ -37,6 +37,8 @@ void fragment() {
 	RIM = 0.3;
 	METALLIC = 0.0;
 	ROUGHNESS = 0.01 * (1.0 - fresnel);
-	ALBEDO = vec3(0.05, 0.12, 0.33) + (0.1 * fresnel);
-	ALPHA = 0.69;
+	//ALBEDO = vec3(0.005, 0.007, 0.04) + (0.1 * fresnel);
+	ALBEDO = vec3(0, 0, 0.001);// + (0.1 * fresnel);
+	ALPHA = 0.95;
+	
 }
