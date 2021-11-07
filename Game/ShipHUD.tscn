@@ -122,17 +122,18 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -20.0
 margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Base" type="Node2D" parent="RadarRing"]
+position = Vector2( 20, 16.6254 )
 
 [node name="Sprite" type="Sprite" parent="RadarRing/Base"]
-modulate = Color( 1, 1, 1, 0.54902 )
+modulate = Color( 0.239216, 0.239216, 0.239216, 0.54902 )
 position = Vector2( 0, -173.981 )
 texture = ExtResource( 2 )
 
@@ -142,7 +143,7 @@ update_rotation = false
 update_scale = false
 
 [node name="MovementHelper" type="Node2D" parent="RadarRing"]
-position = Vector2( 0, -173.981 )
+position = Vector2( 20, -157.356 )
 
 [node name="Range" type="Label" parent="RadarRing/MovementHelper"]
 margin_left = 43.2148

@@ -13,9 +13,11 @@ func set_data(sep2d):
 	
 	$Base.rotation = cam2dforward.angle_to(sep2d)
 	
-	$MovementHelper/Range.text = str(sep2d.length())
+	var hud_dist = sep2d.length() * CONSTANTS.KM_PER_UNIT
 	
-	$Base/Sprite.modulate.a = 1
+	$MovementHelper/Range.text = Helper.decimal_place_string(hud_dist, 2) + " km"
+	
+	$Base/Sprite.modulate.a = 0.7
 
 
 func _process(delta: float) -> void:
