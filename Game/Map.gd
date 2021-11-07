@@ -9,4 +9,5 @@ func _ready() -> void:
 
 
 func _on_HUD_slot_changed(slot_index, weapon_scene) -> void:
+	
 	$DD.set_slot_weapon(slot_index, weapon_scene)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Ships/HUD.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://ShipConfigurer.gd" type="Script" id=3]
+[ext_resource path="res://RadarInfo.gd" type="Script" id=4]
+[ext_resource path="res://TillUI.gd" type="Script" id=5]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -80,6 +82,7 @@ margin_left = 40.0
 margin_top = -84.0
 margin_right = 119.0
 margin_bottom = -57.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -111,5 +114,43 @@ margin_top = -137.589
 margin_right = 198.621
 margin_bottom = -105.589
 alignment = 1
+
+[node name="RadarRing" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Base" type="Node2D" parent="RadarRing"]
+
+[node name="Sprite" type="Sprite" parent="RadarRing/Base"]
+modulate = Color( 1, 1, 1, 0.54902 )
+position = Vector2( 0, -173.981 )
+texture = ExtResource( 2 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RadarRing/Base/Sprite"]
+remote_path = NodePath("../../../MovementHelper")
+update_rotation = false
+update_scale = false
+
+[node name="MovementHelper" type="Node2D" parent="RadarRing"]
+position = Vector2( 0, -173.981 )
+
+[node name="Range" type="Label" parent="RadarRing/MovementHelper"]
+margin_left = 43.2148
+margin_top = -5.6123
+margin_right = 83.2148
+margin_bottom = 8.3877
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="slot_changed" from="ShipConfigurer" to="." method="_on_ShipConfigurer_slot_changed"]

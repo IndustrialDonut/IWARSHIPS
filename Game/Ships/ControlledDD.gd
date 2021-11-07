@@ -11,7 +11,14 @@ extends Spatial
 
 signal updated_player_HUD(info, type)
 
+func _ready() -> void:
+	$Radar.set_active(true)
+	$Radar.set_team("BLUE")
+
+
 func _process(delta: float) -> void:
+	
+	## REPLACE WITH REMOTE TRANSFORMS
 	$CameraControl.global_transform.origin = $ShipRB.global_transform.origin
 	
 	$Weapons.global_transform.origin = $ShipRB.global_transform.origin
@@ -36,3 +43,7 @@ func _on_CameraControl_distance(dist) -> void:
 func _on_CameraControl_targeted_point(point_global) -> void:
 	$TARGET.global_transform.origin = point_global
 	$Weapons.set_target_point(point_global)
+
+
+func _on_Radar_radar_hit(separation2d) -> void:
+	emit_signal("updated_player_HUD", separation2d, ENUMS.DATA.RADAR_ACTIVE)

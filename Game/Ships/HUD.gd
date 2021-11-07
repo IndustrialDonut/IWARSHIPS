@@ -14,9 +14,11 @@ func set_ship_basics(data, type):
 		ENUMS.DATA.RUDDER_ANGLE:
 			_set_rudder_angle(data)
 		ENUMS.DATA.SHIP_TILL:
-			_set_till(data)
+			$Till.set_till(data)
 		ENUMS.DATA.TARGET_DISTANCE:
 			_set_distance(data)
+		ENUMS.DATA.RADAR_ACTIVE:
+			$RadarRing.set_data(data)
 
 
 func _set_distance(dist) -> void:
@@ -35,25 +37,6 @@ func _set_distance(dist) -> void:
 func _set_rudder_angle(normalized) -> void:
 	$ColorRect/TextureRect.rect_position.x = normalized * $ColorRect.rect_size.x
 	$ColorRect/TextureRect.rect_position.x -= $ColorRect/TextureRect.rect_size.x/2.0
-
-
-func _set_till(till) -> void:
-	var word
-	match till:
-		ENUMS.SHIP_TILL.BACK:
-			word = "BACK"
-		ENUMS.SHIP_TILL.REST:
-			word = "REST"
-		ENUMS.SHIP_TILL.QUARTER:
-			word = "1/4"
-		ENUMS.SHIP_TILL.HALF:
-			word = "2/4"
-		ENUMS.SHIP_TILL.THREE_Q:
-			word = "3/4"
-		ENUMS.SHIP_TILL.FULL:
-			word = "FULL"
-	
-	$Till.text = word
 
 
 func _set_speed(vel : Vector3) -> void:

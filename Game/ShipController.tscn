@@ -21,7 +21,5 @@ far = 2698.3
 [node name="GV" type="Spatial" parent="GH"]
 transform = Transform( 1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 2, 0 )
 
-[node name="Camera" type="Camera" parent="GH/GV" groups=[
-"guncam",
-]]
+[node name="Camera" type="Camera" parent="GH/GV" groups=["guncam"]]
 far = 2698.3
