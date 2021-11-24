@@ -3,6 +3,8 @@ extends MeshInstance
 
 func _ready() -> void:
 	
+	$activeradar.set_active()
+	
 	$DD.connect("updated_player_HUD", $HUD, "set_ship_basics")
 	
 	$HUD.set_num_slots(3)

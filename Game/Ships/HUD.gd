@@ -17,8 +17,9 @@ func set_ship_basics(data, type):
 			$Till.set_till(data)
 		ENUMS.DATA.TARGET_DISTANCE:
 			_set_distance(data)
-		ENUMS.DATA.RADAR_ACTIVE:
-			$RadarRing.set_data(data)
+		ENUMS.DATA.RADAR_ACTIVE, ENUMS.DATA.RADAR_RWR:
+			print(type)
+			$RadarRing.set_data(data, type)
 
 
 func _set_distance(dist) -> void:

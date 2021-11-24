@@ -55,4 +55,5 @@ material/0 = null
 [connection signal="HUD_data_changed" from="ShipRB" to="." method="_on_ShipRB_HUD_data_changed"]
 [connection signal="distance" from="CameraControl" to="." method="_on_CameraControl_distance"]
 [connection signal="targeted_point" from="CameraControl" to="." method="_on_CameraControl_targeted_point"]
+[connection signal="radar_RWR_hit" from="Radar" to="." method="_on_Radar_radar_RWR_hit"]
 [connection signal="radar_hit" from="Radar" to="." method="_on_Radar_radar_hit"]

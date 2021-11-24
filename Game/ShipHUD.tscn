@@ -132,15 +132,23 @@ __meta__ = {
 [node name="Base" type="Node2D" parent="RadarRing"]
 position = Vector2( 20, 16.6254 )
 
-[node name="Sprite" type="Sprite" parent="RadarRing/Base"]
+[node name="ActiveClosestTarget" type="Sprite" parent="RadarRing/Base"]
 modulate = Color( 0.239216, 0.239216, 0.239216, 0.54902 )
 position = Vector2( 0, -173.981 )
 texture = ExtResource( 2 )
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RadarRing/Base/Sprite"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RadarRing/Base/ActiveClosestTarget"]
 remote_path = NodePath("../../../MovementHelper")
 update_rotation = false
 update_scale = false
+
+[node name="Base2" type="Node2D" parent="RadarRing"]
+position = Vector2( 20, 16.6254 )
+
+[node name="PassiveClosestTarget" type="Sprite" parent="RadarRing/Base2"]
+modulate = Color( 0.239216, 0.239216, 0.239216, 0.54902 )
+position = Vector2( 0, -173.981 )
+texture = ExtResource( 2 )
 
 [node name="MovementHelper" type="Node2D" parent="RadarRing"]
 position = Vector2( 20, -157.356 )

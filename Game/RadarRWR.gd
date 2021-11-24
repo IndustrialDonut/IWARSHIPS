@@ -1,6 +1,7 @@
 extends Spatial
 
 signal radar_hit(separation2d)
+signal radar_RWR_hit(separation2d)
 
 var team = "RED"
 
@@ -25,29 +26,57 @@ func set_active(boolean = true):
 	_on = boolean
 
 
-func ping_by_radar(ship, is_seen):
-	var seen = "seen" if is_seen else "not seen"
-	#print("We are ", seen, " by ", ship)
+func ping_by_radar(rad):
+	
+	var separation = rad.global_transform.origin - global_transform.origin
+	
+	emit_signal("radar_RWR_hit", _v3planeProj(separation))
 
 
 func _scan_radar():
-	for radar in get_tree().get_nodes_in_group("RADAR"):
+	
+	var all_radars = get_tree().get_nodes_in_group("RADAR")
+	
+	if all_radars.size() <= 1:
+		return
+	
+	var closest = all_radars[0] if all_radars[0] != self else all_radars[1]
+	var closest_dist2 = (closest.global_transform.origin - global_transform.origin).length_squared()
+	
+	for radar in all_radars:
+		
 		if radar != self:# and team != radar.team:
 			
 			$RayCast.look_at(radar.global_transform.origin, Vector3.UP) # runs every frame
 			
 			if $RayCast.is_colliding():
+				
 				if $RayCast.get_collider().get_collision_layer_bit(1):
 					# won't run if hits an obstacle on layer 1 only first
 					
-					var separation = radar.global_transform.origin - global_transform.origin
+					radar.ping_by_radar(self)
 					
-					var v2d = Vector2(separation.x, separation.z)
+					var separation3 = radar.global_transform.origin - global_transform.origin
 					
-					if _max_range > v2d.length():
+					var v2d = _v3planeProj(separation3)
+					
+					var dist2 = v2d.length_squared()
+					
+					if dist2 < closest_dist2:
 						
-						emit_signal("radar_hit", v2d)
-						
-						radar.ping_by_radar(self, true)
-					else:
-						radar.ping_by_radar(self, false)
+						closest = radar
+						closest_dist2 = dist2
+					
+	
+	var dist = sqrt(closest_dist2)
+	
+	var the_sep = closest.global_transform.origin - global_transform.origin
+	
+	if dist < _max_range:
+		
+		# active radar show hit.
+		emit_signal("radar_hit", _v3planeProj(the_sep))
+
+
+func _v3planeProj(v3):
+	return Vector2(v3.x, v3.z)

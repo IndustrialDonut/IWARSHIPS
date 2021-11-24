@@ -41,10 +41,17 @@ light_energy = 0.52
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
-[node name="Radar" parent="." instance=ExtResource( 1 )]
+[node name="justrwrtarget" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 69.3704, 0, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Radar"]
+[node name="MeshInstance" type="MeshInstance" parent="justrwrtarget"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="activeradar" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.9835, 0, 15.2374 )
+
+[node name="MeshInstance" type="MeshInstance" parent="activeradar"]
 mesh = SubResource( 1 )
 material/0 = null
 

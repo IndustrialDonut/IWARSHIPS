@@ -47,3 +47,7 @@ func _on_CameraControl_targeted_point(point_global) -> void:
 
 func _on_Radar_radar_hit(separation2d) -> void:
 	emit_signal("updated_player_HUD", separation2d, ENUMS.DATA.RADAR_ACTIVE)
+
+
+func _on_Radar_radar_RWR_hit(separation2d) -> void:
+	emit_signal("updated_player_HUD", separation2d, ENUMS.DATA.RADAR_RWR)
